@@ -194,14 +194,14 @@ $ex_text = explode(" ", $text);
 $ex__text = explode("-", $text);
 $exdata = explode("-", $data);
 $ex_data = explode("#", $data);
-$ordermy = count($BUYSNUM[number]); #عدد الأرقام المشترى#
-$numbuy = $BUYSNUM[number_my]; #عدد الأرقام المشترى#
-$readymy = $BUYSNUM[ready_my]; #عدد الأرقام الجاهزة#
-$orderall = count($ORDERALL) + 1; #عدد مشتريات الاعضاء#
-$idnums = count($ORDERALL) + 999999999; #عدد مشتريات الاعضاء#
-$cardmy = count($BUYSCARD); #عدد الكروت المشترى#
-$sendmy = count($BUYSSEND); #عدد عمليات تحويل الروبل#
-$pricmy = count($BUYSPRIC); #عدد عمليات شحن الحساب#
+$ordermy = count($BUYSNUM['number'] ?? []); #عدد الأرقام المشترى#
+$numbuy = $BUYSNUM["number_my"]; #عدد الأرقام المشترى#
+$readymy = $BUYSNUM['ready_my']; #عدد الأرقام الجاهزة#
+$orderall = count($ORDERALL ?? []) + 1; #عدد مشتريات الاعضاء#
+$idnums = count($ORDERALL ?? []) + 999999999; #عدد مشتريات الاعضاء#
+$cardmy = count($BUYSCARD ?? []); #عدد الكروت المشترى#
+$sendmy = count($BUYSSEND ?? []); #عدد عمليات تحويل الروبل#
+$pricmy = count($BUYSPRIC ?? []); #عدد عمليات شحن الحساب#
 $buymy = $BUYSNUM['number_my']; #عدد الأرقام المكتملة#
 $rubles = file_get_contents("EMILS/$EM/rubles.txt"); #الرصيد اللكلي#
 $Balance = file_get_contents("EMILS/$EM/points.txt"); #رصيد العضو#
@@ -3167,9 +3167,7 @@ if ($ex_data[0] == "Download5") {
         if ($idSend == null) {
             bot('answercallbackquery', [
                 'callback_query_id' => $update->callback_query->id,
-                'text' => "
-⚠️ - لاتوجد صفحة أخرى حالياً.
-",
+                'text' => "⚠️ -لاتوجد صفحة أخرى حالياً.",
                 'show_alert' => true,
             ]);
             unlink("data/id/$id/step.txt");

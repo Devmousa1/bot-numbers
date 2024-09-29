@@ -3168,31 +3168,31 @@ $AdminEIGHT = ["x"=>"xx","xx"=>"xx","xxx"=>"xx","سويسرا 🇨🇭"=>"173","
 
 #
 #price#dropsms
-$o_co[wa]['price16']['11'] = 20;
-$o_co[wa]['price16']['6'] = "20";
-$o_co[wa]['price16']['17'] = 20;
-$o_co[wa]['price16']['19'] = 20;
-$o_co[wa]['price16']['30'] = 20;
-$o_co[wa]['price16']['98'] = 20;
-$o_co[wa]['price16']['37'] = 20;
-$o_co[wa]['price16']['40'] = 20;
-$o_co[wa]['price16']['57'] = 20;
-$o_co[wa]['price16']['58'] = 20;
-$o_co[wa]['price16']['64'] = 20;
-$o_co[wa]['price16']['66'] = 20;
-$o_co[wa]['price16']['71'] = 20;
-$o_co[wa]['price16']['74'] = 20;
-$o_co[wa]['price16']['75'] = 20;
-$o_co[wa]['price16']['88'] = 20;
-$o_co[wa]['price16']['99'] = 20;
-$o_co[wa]['price16']['102'] = 20;
-$o_co[wa]['price16']['116'] = 20;
-$o_co[wa]['price16']['143'] = 20;
-$o_co[wa]['price16']['147'] = 20;
-$o_co[fb]['price16']['1'] = 1;
-$o_co[fb]['price16']['24'] = 1;
-$o_co[fb]['price16']['74'] = 1;
-$o_co[ig]['price16']['143'] = 1;
+$o_co["wa"]['price16']['11'] = 20;
+$o_co["wa"]['price16']['6'] = "20";
+$o_co["wa"]['price16']['17'] = 20;
+$o_co["wa"]['price16']['19'] = 20;
+$o_co["wa"]['price16']['30'] = 20;
+$o_co["wa"]['price16']['98'] = 20;
+$o_co["wa"]['price16']['37'] = 20;
+$o_co["wa"]['price16']['40'] = 20;
+$o_co["wa"]['price16']['57'] = 20;
+$o_co["wa"]['price16']['58'] = 20;
+$o_co["wa"]['price16']['64'] = 20;
+$o_co["wa"]['price16']['66'] = 20;
+$o_co["wa"]['price16']['71'] = 20;
+$o_co["wa"]['price16']['74'] = 20;
+$o_co["wa"]['price16']['75'] = 20;
+$o_co["wa"]['price16']['88'] = 20;
+$o_co["wa"]['price16']['99'] = 20;
+$o_co["wa"]['price16']['102'] = 20;
+$o_co["wa"]['price16']['116'] = 20;
+$o_co["wa"]['price16']['143'] = 20;
+$o_co["wa"]['price16']['147'] = 20;
+$o_co["fb"]['price16']['1'] = 1;
+$o_co["fb"]['price16']['24'] = 1;
+$o_co["fb"]['price16']['74'] = 1;
+$o_co["ig"]['price16']['143'] = 1;
 #
 #countries#24sms7
     $_co['country17']['0'] = "روسيا 🇷🇺";
