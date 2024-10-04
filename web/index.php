@@ -163,7 +163,7 @@ $money2 = file_get_contents("data/txt/rubleall.txt"); #الروبل اللكلي
 $poi_money = file_get_contents("data/txt/pointall.txt"); #الروبل المتبقي#
 $money = $money2 - $poi_money; #الروبل المستهلك#
 $allcharges = $ORDERALL['add']; #عدد الشحن ب المرات#
-$assignru = 0.25; #نسبة ربح رابط الدعوة#
+$assignru = 0.01; #نسبة ربح رابط الدعوة#
 $Exchange = 60; #سعر الدولار#
 #________________
 $EM = $EMILNow['emil'][$chat_id];
