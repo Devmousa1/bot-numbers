@@ -751,7 +751,7 @@ if ($data == "sign_in") {
 }
 if ($text != '/start' && $text != null && $exstep[0] == 'sign_in') {
     $margin = $exstep[1];
-    $xzz = "@MOUSA SMS.COM";
+    $xzz = "@MOUSA.COM";
     $code = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz"), 0 - 10);
     $emile = "$code$xzz";
     $password = substr(str_shuffle("0123456789"), 0 - 6);
