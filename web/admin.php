@@ -307,7 +307,7 @@ if ($addblusdel['au']['add'] == "ok") {
   $delau = "au-no";
 }
 #=========={المواقع}==========#
-if ($addblusdel['5sim']['add'] == "ok") {
+if ($addblusdel['5sim']['add'] =="ok") {
   $add5sim = "5sim.biz 🌐 ✅";
   $sim5 = "5sim.biz 🌐";
   $del5sim = "5sim-ok";
@@ -404,7 +404,7 @@ if ($addblusdel['onlinesim']['add'] == "ok") {
   $onlinesim = "";
   $delonlinesim = "onlinesim-no";
 }
-if ($addblusdel['supersmstech']['add'] == "ok") {
+if ($addblusdel['supersmstech']['add'] ==  "ok") {
   $addsupersmstech = "supersmstech.com 🌐 ✅";
   $supersmstech = "supersmstech.com 🌐";
   $delsupersmstech = "supersmstech-ok";
