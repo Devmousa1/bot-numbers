@@ -2282,7 +2282,7 @@ bot('SendMessage',[
 $hnum=substr($number, 0,-4)."••••";
 $nid=substr($id, 0,-3)."•••";
 bot('SendMessage',[
-'chat_id'=>-1002393552612,
+'chat_id'=>-1002289487154,
 'text'=>"
 ☑️ *- تم شراء رقم من البوت بنجاح* 📢
 *➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖*
@@ -2543,7 +2543,7 @@ bot('SendMessage',[
 $hnum=substr($number, 0,-4)."••••";
 $nid=substr($id, 0,-3)."•••";
 bot('SendMessage',[
-'chat_id'=>-1002138128657,
+'chat_id'=>-1002289487154,
 'text'=>"
 ☑️ *- تم شراء رقم من البوت بنجاح* 📢
 *➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖*
@@ -2628,7 +2628,7 @@ bot('SendMessage',[
 $hnum=substr($number, 0,-4)."••••";
 $nid=substr($id, 0,-3)."•••";
 bot('SendMessage',[
-'chat_id'=>-1002138128657,
+'chat_id'=>-1002289487154,
 'text'=>"
 ☑️ *- تم شراء رقم من البوت بنجاح* 📢
 *➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖*
@@ -2991,7 +2991,7 @@ bot('SendMessage',[
 $hnum=substr($number, 0,-4)."••••";
 $nid=substr($id, 0,-3)."•••";
 bot('SendMessage',[
-'chat_id'=>-1002138128657,
+'chat_id'=>-1002289487154,
 'text'=>"
 ☑️ *- تم شراء رقم من البوت بنجاح* 📢
 *➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖*
