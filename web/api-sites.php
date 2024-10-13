@@ -11,9 +11,9 @@ $allsms = $_GET["allsms"];
 include("name.php");
 $APPS = json_decode(file_get_contents("data/api/apps.json"), true);
 #________ALL
-$api_key = $APPS[$site][api_key];
-$Username = $APPS[$site][Username];
-$Password = $APPS[$site][Password];
+$api_key = $APPS[$site]['api_key'];
+$Username = $APPS[$site]['Username'];
+$Password = $APPS[$site]['Password'];
 if ($site == "5sim") {
     $zx = $o_co['country'][$country];
     $app = str_replace(["wa", "tg", "fb", "ig", "tw", "lf", "go", "im", "vi", "fu", "nf", "au", "ot"], ["whatsapp", "telegram", "facebook", "instagram", "twitter", "tiktok", "google", "imo", "viber", "snapchat", "netflix", "haraj", "other"], $app);
@@ -141,8 +141,8 @@ if ($_GET["action"] == "getNum") {
         curl_close($ch);
         $no = $result;
         $api = json_decode($result, 1);
-        $idnumber = $api[id];
-        $number = $api[phone];
+        $idnumber = $api['id'];
+        $number = $api['phone'];
         if (in_array($no, $fali)) {
             $number = $number;
         } else {
@@ -153,10 +153,10 @@ if ($_GET["action"] == "getNum") {
         } else {
             $status = 200;
         }
-        $v = $api[expires];
+        $v = $api['expires'];
         $ex_time = explode(":", $v);
         $v = $ex_time[1];
-        $x = $api[created_at];
+        $x = $api['created_at'];
         $ex_time = explode(":", $x);
         $x = $ex_time[1];
         if ($v > $x) {
@@ -253,9 +253,9 @@ if ($_GET["action"] == "getNum") {
     if ($site == "onlinesim") {
         $api_key = file_get_contents("data/api/api_onlinesim.txt");
         $api = json_decode(file_get_contents("https://onlinesim.io/api/getNum.php?apikey=$api_key&app=$app&country=$zx"), 1);
-        $idnumber = $api[tzid];
+        $idnumber = $api['tzid'];
         $api2 = json_decode(file_get_contents("https://onlinesim.io/api/getState.php?apikey=$api_key&tzid=$idnumber"), 1);
-        $number = $api2[0][number];
+        $number = $api2[0]['number'];
         if ($number == null) {
             $status = 0;
         } else {
@@ -267,9 +267,9 @@ if ($_GET["action"] == "getNum") {
     if ($site == "supersmstech") {
         $fali = array("No user found.", "Invalid Service ID", "Invalid country ID", "Invalid channel ID", "Not available for this channel.", "The phone number is not available. Please try again later. Suggestion: Try another country or another channel");
         $api = json_decode(file_get_contents("https://www.supersmstech.com/api/getnumber?channel=$operator&country=$zx&pid=$app&secret_key=$api_key"), 1);
-        $number = $api[phone];
-        $idnumber = $api[taskid];
-        $no = $api[message];
+        $number = $api['phone'];
+        $idnumber = $api['taskid'];
+        $no = $api['message'];
         if (in_array($no, $fali)) {
             $number = $number;
         } else {
@@ -285,9 +285,9 @@ if ($_GET["action"] == "getNum") {
     }
     if ($site == "viotp") {
         $api = json_decode(file_get_contents("https://api.viotp.com/request/getv2?token=$api_key&serviceId=$app&country=$zx&network=$operator"), 1);
-        $number = $api[data][phone_number];
-        $cod = $api[data][countryCode];
-        $idnumber = $api[data][request_id];
+        $number = $api['data']['phone_number'];
+        $cod = $api['data']['countryCode'];
+        $idnumber = $api['data']['request_id'];
         if ($number == null) {
             $status = 0;
         } else {
@@ -326,8 +326,8 @@ if ($_GET["action"] == "getNum") {
     }
     if ($site == "smscode") {
         $api = json_decode(file_get_contents("https://sms-code.ru/api.php?api_key=$api_key&method=phone&app=$app&country=$zx&multiple_sms=0"), 1);
-        $idnumber = $api[data][activation];
-        $number = $api[data][number];
+        $idnumber = $api['data']['activation'];
+        $number = $api['data']['number'];
         if ($number == null) {
             $status = 0;
         } else {
@@ -353,19 +353,19 @@ if ($_GET["action"] == "getNum") {
         $api = json_decode(file_get_contents("https://2ndline.io/apiv1/order?apikey=$api_key&appId=$app&countryId=$zx&operatorId=$operator"), 1);
         $idds = $api["id"];
         $api2 = json_decode(file_get_contents("https://2ndline.io/apiv1/ordercheck?apikey=$api_key&id=$idds"), 1);
-        $idnumber = $api2[data][id];
-        if ($api2[status] != 1) {
+        $idnumber = $api2['data']['id'];
+        if ($api2['status'] != 1) {
             $number = null;
         } else {
-            $number = $api2[status];
+            $number = $api2['status'];
         }
         if ($number == null) {
             $status = 0;
         } else {
             $status = 200;
         }
-        $num2nd = $api2[data][phone];
-        $number = $api2[data][phone];
+        $num2nd = $api2['data']['phone'];
+        $number = $api2['data']['phone'];
         $nums = substr("$number", 0, +1);
         if ($nums == 0) {
             $number = substr("$numb", +1);
@@ -390,8 +390,8 @@ if ($_GET["action"] == "getNum") {
     }
     if ($site == "fastpva") {
         $api = json_decode(file_get_contents("http://api.fastpva.com/pvapublic/sms/getNumber?myPid=$operator&locale=$zx&apikey=$api_key"), 1);
-        $idnumber = $api[data][orderId];
-        $number = $api[data][number];
+        $idnumber = $api['data']['orderId'];
+        $number = $api['data']['number'];
         if (preg_match("/\+[0-9]/", $number)) {
             $number = $number;
         } else {
@@ -433,8 +433,8 @@ if ($_GET["action"] == "getNum") {
     }
     if ($site == "sellotp") {
         $api = json_decode(file_get_contents("https://api.sellotp.com/request/get?token=$api_key&appId=$app&network=$operator&lang=en"), 1);
-        $idnumber = $api[data][request_id];
-        $number = $api[data][phone_number];
+        $idnumber = $api['data']['request_id'];
+        $number = $api['data']['phone_number'];
         if ($number == null) {
             $status = 0;
         } else {
@@ -445,8 +445,8 @@ if ($_GET["action"] == "getNum") {
     }
     if ($site == "duraincloud") {
         $api = json_decode(file_get_contents("http://api.duraincloud.com/out/ext_api/getMobile?name=$Username&pwd=$Password&ApiKey=$api_key&cuy=$zx&pid=$app&num=1&noblack=0&serial=2"), 1);
-        $cod = $api[code];
-        $number = $api[data];
+        $cod = $api['code'];
+        $number = $api['data'];
         $idnumber = $number;
         if ($cod == "200") {
             $number = $number;
@@ -465,19 +465,19 @@ if ($_GET["action"] == "getNum") {
     $number = "+$num";
     #_____json
     if ($status == "200") {
-        $json[status] = $status;
-        $json[message] = "Number fetched successfully";
+        $json['status'] = $status;
+        $json['message'] = "Number fetched successfully";
         if ($site == "2ndline") {
-            $json[num2nd] = $num2nd;
+            $json['num2nd'] = $num2nd;
         }
-        $json[number] = $number;
-        $json[idnumber] = $idnumber;
-        $json[time] = $time;
-        $json[Location] = $Location;
+        $json['number'] = $number;
+        $json['idnumber'] = $idnumber;
+        $json['time'] = $time;
+        $json['Location'] = $Location;
     } else {
-        $json[status] = $status;
-        $json[message] = "A problem has occurred from the provider";
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "A problem has occurred from the provider";
+        $json['Location'] = $Location;
     }
     echo json_encode($json);
 }
@@ -485,19 +485,19 @@ if ($_GET["action"] == "getNum") {
 if ($_GET["action"] == "getNum2nd") {
     if ($site == "2ndline") {
         $api = json_decode(file_get_contents("https://2ndline.io/apiv1/ordercheck?apikey=$api_key&id=$idnumber"), 1);
-        $idnumber = $api[data][id];
-        if ($api[status] != 1) {
+        $idnumber = $api['data']['id'];
+        if ($api['status'] != 1) {
             $number = null;
         } else {
-            $number = $api[status];
+            $number = $api['status'];
         }
         if ($number == null) {
             $status = 0;
         } else {
             $status = 200;
         }
-        $num2nd = $api[data][phone];
-        $number = $api[data][phone];
+        $num2nd = $api['data']['phone'];
+        $number = $api['data']['phone'];
         $nums = substr("$number", 0, +1);
         if ($nums == 0) {
             $number = substr("$numb", +1);
@@ -511,19 +511,19 @@ if ($_GET["action"] == "getNum2nd") {
     $number = "+$num";
     #_____json
     if ($status == "200") {
-        $json[status] = $status;
-        $json[message] = "Number fetched successfully";
+        $json['status'] = $status;
+        $json['message'] = "Number fetched successfully";
         if ($site == "2ndline") {
-            $json[num2nd] = $num2nd;
+            $json['num2nd'] = $num2nd;
         }
-        $json[number] = $number;
-        $json[idnumber] = $idnumber;
-        $json[time] = $time;
-        $json[Location] = $Location;
+        $json['number'] = $number;
+        $json['idnumber'] = $idnumber;
+        $json['time'] = $time;
+        $json['Location'] = $Location;
     } else {
-        $json[status] = $status;
-        $json[message] = "A problem has occurred from the provider";
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "A problem has occurred from the provider";
+        $json['Location'] = $Location;
     }
     echo json_encode($json, 1);
 }
@@ -551,8 +551,8 @@ if ($_GET["action"] == "getNum5sim") {
         curl_close($ch);
         $no = $result;
         $api = json_decode($result, 1);
-        $idnumber = $api[id];
-        $number = $api[phone];
+        $idnumber = $api['id'];
+        $number = $api['phone'];
         if (in_array($no, $fali)) {
             $number = $number;
         } else {
@@ -563,10 +563,10 @@ if ($_GET["action"] == "getNum5sim") {
         } else {
             $status = 200;
         }
-        $v = $api[expires];
+        $v = $api['expires'];
         $ex_time = explode(":", $v);
         $v = $ex_time[1];
-        $x = $api[created_at];
+        $x = $api['created_at'];
         $ex_time = explode(":", $x);
         $x = $ex_time[1];
         if ($v > $x) {
@@ -582,16 +582,16 @@ if ($_GET["action"] == "getNum5sim") {
     $number = "+$num";
     #_____json
     if ($status == "200") {
-        $json[status] = $status;
-        $json[message] = "Number fetched successfully";
-        $json[number] = $number;
-        $json[idnumber] = $idnumber;
-        $json[time] = $time;
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "Number fetched successfully";
+        $json['number'] = $number;
+        $json['idnumber'] = $idnumber;
+        $json['time'] = $time;
+        $json['Location'] = $Location;
     } else {
-        $json[status] = $status;
-        $json[message] = "A problem has occurred from the provider";
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "A problem has occurred from the provider";
+        $json['Location'] = $Location;
     }
     echo json_encode($json, 1);
 }
@@ -616,11 +616,11 @@ if ($_GET["action"] == "getStatus") {
         }
         curl_close($ch);
         $api = json_decode($result, 1);
-        $code = $api[sms][0][code];
-        $created_at = $api[sms][0][created_at];
+        $code = $api['sms'][0]['code'];
+        $created_at = $api['sms'][0]['created_at'];
         $created_at = explode(".", $created_at);
         $created_at = str_replace('T', ' ', $created_at[0]);
-        $sender = $api[sms][0][sender];
+        $sender = $api['sms'][0]['sender'];
         $agen = 200;
         if ($code == null) {
             $status = 0;
@@ -706,7 +706,7 @@ if ($_GET["action"] == "getStatus") {
     }
     if ($site == "onlinesim") {
         $api = json_decode(file_get_contents("https://onlinesim.io/api/getState.php?apikey=$api_key&tzid=$idnumber"), 1);
-        $code = $api[0][msg];
+        $code = $api[0]['msg'];
         $agen = 1;
         if ($code == null) {
             $status = 0;
@@ -717,7 +717,7 @@ if ($_GET["action"] == "getStatus") {
     }
     if ($site == "supersmstech") {
         $api = json_decode(file_get_contents("https://www.supersmstech.com/api/getcode?taskid=$idnumber&secret_key=$api_key"), 1);
-        $code = $api[code];
+        $code = $api['code'];
         $agen = 1;
         if ($code == null) {
             $status = 0;
@@ -728,7 +728,7 @@ if ($_GET["action"] == "getStatus") {
     }
     if ($site == "viotp") {
         $api = json_decode(file_get_contents("https://api.viotp.com/session/getv2?token=$api_key&requestId=$idnumber"), 1);
-        $code = $api[data]['Code'];
+        $code = $api['data']['Code'];
         $agen = 1;
         if ($code == null) {
             $status = 0;
@@ -761,7 +761,7 @@ if ($_GET["action"] == "getStatus") {
     }
     if ($site == "smscode") {
         $api = json_decode(file_get_contents("https://sms-code.ru/api.php?api_key=$api_key&method=sms&activation=$idnumber"), 1);
-        $code = $api[data];
+        $code = $api['data'];
         $agen = 200;
         if ($code == null) {
             $status = 0;
@@ -783,7 +783,7 @@ if ($_GET["action"] == "getStatus") {
     }
     if ($site == "2ndline") {
         $api = json_decode(file_get_contents("https://2ndline.io/apiv1/ordercheck?apikey=$api_key&id=$idnumber"), 1);
-        $code = $api[data][code];
+        $code = $api['data']['code'];
         $agen = 1;
         if ($code == null) {
             $status = 0;
@@ -806,7 +806,7 @@ if ($_GET["action"] == "getStatus") {
     }
     if ($site == "fastpva") {
         $api = json_decode(file_get_contents("http://api.fastpva.com/pvapublic/sms/getCode?orderId=$idnumber&apikey=$api_key"), 1);
-        $code = $api[data][code];
+        $code = $api['data']['code'];
         $agen = 1;
         if ($code == null) {
             $status = 0;
@@ -841,7 +841,7 @@ if ($_GET["action"] == "getStatus") {
     }
     if ($site == "sellotp") {
         $api = json_decode(file_get_contents("https://api.sellotp.com/session/get?token=$api_key&requestId=$idnumber&lang=en"), 1);
-        $code = $api[data][Code];
+        $code = $api['data']['Code'];
         $agen = 1;
         if ($code == null) {
             $status = 0;
@@ -852,7 +852,7 @@ if ($_GET["action"] == "getStatus") {
     }
     if ($site == "duraincloud") {
         $api = json_decode(file_get_contents("http://api.duraincloud.com/out/ext_api/getMsg?name=$Username&pwd=$Password&ApiKey=$api_key&pn=$number&pid=$app&serial=2"), 1);
-        $code = $api[data];
+        $code = $api['data'];
         $agen = 1;
         if ($code == null) {
             $status = 0;
@@ -864,20 +864,20 @@ if ($_GET["action"] == "getStatus") {
     $code = str_replace('-', '', $code);
     #_____json
     if ($status == "200") {
-        $json[status] = $status;
-        $json[message] = "Verification code has been received";
-        $json[code] = $code;
+        $json['status'] = $status;
+        $json['message'] = "Verification code has been received";
+        $json['code'] = $code;
         if ($site == "5sim") {
-            $json[created_at] = $created_at;
-            $json[sender] = $sender;
+            $json['created_at'] = $created_at;
+            $json['sender'] = $sender;
         }
-        $json[agen] = $agen;
-        $json[price] = $price;
-        $json[Location] = $Location;
+        $json['agen'] = $agen;
+        $json['price'] = $price;
+        $json['Location'] = $Location;
     } else {
-        $json[status] = $status;
-        $json[message] = "Provider verification code not received";
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "Provider verification code not received";
+        $json['Location'] = $Location;
     }
     echo json_encode($json, 1);
 }
@@ -902,11 +902,11 @@ if ($_GET["action"] == "getStatus2") {
         }
         curl_close($ch);
         $api = json_decode($result, 1);
-        $code = $api[sms][$allsms][code];
-        $created_at = $api[sms][$allsms][created_at];
+        $code = $api['sms'][$allsms]['code'];
+        $created_at = $api['sms'][$allsms]['created_at'];
         $created_at = explode(".", $created_at);
         $created_at = str_replace('T', ' ', $created_at[0]);
-        $sender = $api[sms][$allsms][sender];
+        $sender = $api['sms'][$allsms]['sender'];
         $agen = 200;
         if ($code == null) {
             $status = 0;
@@ -917,8 +917,8 @@ if ($_GET["action"] == "getStatus2") {
     }
     if ($site == "smscode") {
         $api = json_decode(file_get_contents("https://sms-code.ru/api.php?api_key=$api_key&method=next_sms&activation=$idnumber"), 1);
-        $code = $api[data];
-        $error = $api[status];
+        $code = $api['data'];
+        $error = $api['status'];
         if ($error != "error") {
             $code = $code;
             $agen = 1;
@@ -936,19 +936,19 @@ if ($_GET["action"] == "getStatus2") {
     $code = str_replace('-', '', $code);
     #_____json
     if ($status == "200") {
-        $json[status] = $status;
-        $json[message] = "Verification code has been received";
-        $json[code] = $code;
+        $json['status'] = $status;
+        $json['message'] = "Verification code has been received";
+        $json['code'] = $code;
         if ($site == "5sim") {
-            $json[created_at] = $created_at;
-            $json[sender] = $sender;
+            $json['created_at'] = $created_at;
+            $json['sender'] = $sender;
         }
-        $json[agen] = $agen;
-        $json[Location] = $Location;
+        $json['agen'] = $agen;
+        $json['Location'] = $Location;
     } else {
-        $json[status] = $status;
-        $json[message] = "Provider verification code not received";
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "Provider verification code not received";
+        $json['Location'] = $Location;
     }
     echo json_encode($json, 1);
 }
@@ -1058,19 +1058,19 @@ if ($_GET["action"] == "setStatus") {
     }
     if ($site == "duraincloud") {
         $api = json_decode(file_get_contents("http://api.duraincloud.com/out/ext_api/passMobile?name=$Username&pwd=$Password&ApiKey=$api_key&pn=$number&pid=$app&serial=2"), 1);
-        $code = $api[code];
+        $code = $api['code'];
         $status = 200;
         $Location  = "mm.duraincloud.com";
     }
     #_____json
     if ($status == "200") {
-        $json[status] = $status;
-        $json[message] = "The number has been terminated from the provider";
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "The number has been terminated from the provider";
+        $json['Location'] = $Location;
     } else {
-        $json[status] = $status;
-        $json[message] = "The number could not be terminated from the provider";
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "The number could not be terminated from the provider";
+        $json['Location'] = $Location;
     }
     echo json_encode($json, 1);
 }
@@ -1128,7 +1128,7 @@ if ($_GET["action"] == "addBlack") {
     }
     if ($site == "onlinesim") {
         $api = json_decode(file_get_contents("https://onlinesim.io/api/setOperationOk.php?apikey=$api_key&tzid=$idnumber"), 1);
-        $tims = $api[0][time];
+        $tims = $api[0]['time'];
         if ($tims > 770) {
             $status = 0;
         } else {
@@ -1195,18 +1195,18 @@ if ($_GET["action"] == "addBlack") {
     }
     if ($site == "duraincloud") {
         $api = json_decode(file_get_contents("http://api.duraincloud.com/out/ext_api/addBlack?name=$Username&pwd=$Password&ApiKey=$api_key&pn=$number&pid=$app"), 1);
-        $status = $api[code];
+        $status = $api['code'];
         $Location  = "mm.duraincloud.com";
     }
     #_____json
     if ($status == "200") {
-        $json[status] = $status;
-        $json[message] = "The number has been blocked from the provider";
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "The number has been blocked from the provider";
+        $json['Location'] = $Location;
     } else {
-        $json[status] = $status;
-        $json[message] = "The number is not blocked from the provider";
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "The number is not blocked from the provider";
+        $json['Location'] = $Location;
     }
     echo json_encode($json, 1);
 }
@@ -1215,8 +1215,8 @@ if ($_GET["action"] == "getPrice") {
     if ($site == "5sim") {
         if ($operator != "any") {
             $api = json_decode(file_get_contents("https://5sim.biz/v1/guest/prices?country=$zx&product=$app"), 1);
-            $price = $api[$zx][$app][$operator][cost];
-            $add = $api[$zx][$app][$operator][count];
+            $price = $api[$zx][$app][$operator]['cost'];
+            $add = $api[$zx][$app][$operator]['count'];
         } else {
             $price = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . $operator))->{$app}->Price;
             $add = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . $operator))->{$app}->Qty;
@@ -1360,8 +1360,8 @@ if ($_GET["action"] == "getPrice") {
     }
     if ($site == "smscode") {
         $api = json_decode(file_get_contents("https://sms-code.ru/api.php?api_key=$api_key&method=full_free_phones&service=$app"), 1);
-        $price = $api[data][$app][$zx]["price"];
-        $add = $api[data][$app][$zx]["phones"];
+        $price = $api['data'][$app][$zx]["price"];
+        $add = $api['data'][$app][$zx]["phones"];
         if ($price != null) {
             $status = 200;
         } else {
@@ -1409,8 +1409,8 @@ if ($_GET["action"] == "getPrice") {
     }
     if ($site == "24sms7") {
         $api = json_decode(file_get_contents("https://24sms7.com/stubs/handler_api.php?api_key=$api_key&action=getPrices&service=$app&country=$zx"), 1);
-        $price = $api[$zx][$app][cost];
-        $add = $api[$zx][$app][count];
+        $price = $api[$zx][$app]['cost'];
+        $add = $api[$zx][$app]['count'];
         if ($price != null) {
             $status = 200;
         } else {
@@ -1434,17 +1434,17 @@ if ($_GET["action"] == "getPrice") {
     }
     #_____json
     if ($status == "200") {
-        $json[status] = $status;
-        $json[message] = "The state price was brought";
-        $json[price] = $price;
-        $json[add] = $add;
-        $json[operator] = $operator;
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "The state price was brought";
+        $json['price'] = $price;
+        $json['add'] = $add;
+        $json['operator'] = $operator;
+        $json['Location'] = $Location;
     } else {
-        $json[status] = $status;
-        $json[message] = "This country does not exist";
-        $json[operator] = $operator;
-        $json[Location] = $Location;
+        $json['status'] = $status;
+        $json['message'] = "This country does not exist";
+        $json['operator'] = $operator;
+        $json['Location'] = $Location;
     }
     echo json_encode($json, 1);
 }
