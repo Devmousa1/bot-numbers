@@ -5693,8 +5693,8 @@ if ($exdata[0] == "addservice") {
     $zz1 = null;
   }
   if ($zz == null and $yota == null and $vodafone == null and $virtual32 == null and $virtual31 == null and $virtual30 == null and $virtual29 == null and $virtual28 == null and $virtual27 == null and $virtual26 == null and $virtual25 == null and $virtual24 == null and $virtual23 == null and $virtual22 == null and $virtual21a == null and $virtual20 == null and $virtual19 == null and $virtual18 == null and $virtual17 == null and $virtual16 == null and $virtual15 == null and $virtual12 == null and $virtual8 == null and $virtual7 == null and $virtual5 == null and $virtual4 == null and $virtual2 == null and $virginmobile == null and $tnt == null and $tmobile == null and $tigo == null and $three == null and $tele2 == null and $sun == null and $smart == null and $rostelecom == null and $redbullmobile == null and $play == null and $pildyk == null and $orange == null and $mts == null and $megafon == null and $matrix == null and $lycamobile == null and $kcell == null and $globe == null and $ee == null and $claro == null and $beeline == null and $altel == null and $activ == null and $bee019 == null) {
-    $adds = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . 'any'))->{$app_5sim}->Qty;
-    $price = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . 'any'))->{$app_5sim}->Price;
+    $adds = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . "any"))->{$app_5sim}->Qty;
+    $price = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . "any"))->{$app_5sim}->Price;
     if ($price != null) {
       $any = "any";
       $any1 = "$price ₽| $adds";

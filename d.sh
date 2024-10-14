@@ -8,8 +8,8 @@ WEB_DIR="web"
 OLD_FOLDERS=("data" "EMIL" "EMILS" "BUY" "assignment")
 
 echo "Cleaning up..."
-# rm -rf "$ZIP_FILE"
-# rm -rf "$EXTRACT_DIR"
+rm -rf "$ZIP_FILE"
+rm -rf "$EXTRACT_DIR"
 
 # # Step 1: Download the ZIP file
 echo "Downloading $ZIP_FILE from $URL..."
