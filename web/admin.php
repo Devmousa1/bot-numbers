@@ -9794,243 +9794,243 @@ if ($text && $text != '/start' && $step == 'zero') {
     file_put_contents("data/txt/rubleall.txt", $dlls);
   }
 }
-/*#=========={حساباتي}==========#
-if($data == 'Balancesms' or $text == "رصيدي"){
-if($addblusdel['5sim']['add'] == "ok"){
-$api_key = $APPS['5sim']['api_key'];
-$ch = curl_init();
+#=========={حساباتي}==========#
+if ($data == 'Balancesms' or $text == "رصيدي") {
+  if ($addblusdel['5sim']['add'] == "ok") {
+    $api_key = $APPS['5sim']['api_key'];
+    $ch = curl_init();
 
-curl_setopt($ch, CURLOPT_URL, 'https://5sim.biz/v1/user/profile');
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+    curl_setopt($ch, CURLOPT_URL, 'https://5sim.biz/v1/user/profile');
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
 
 
-$headers = array();
-$headers[] = 'Authorization: Bearer ' . $api_key;
-$headers[] = 'Accept: application/json';
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    $headers = array();
+    $headers[] = 'Authorization: Bearer ' . $api_key;
+    $headers[] = 'Accept: application/json';
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
-$result = curl_exec($ch);
-if (curl_errno($ch)) {
-    echo 'Error:' . curl_error($ch);
-}
-curl_close($ch);
-$api=json_decode($result,1);
-$price = $api[balance];
-$price = "$price ₽";
-$key['inline_keyboard'][]=[['text'=>"</> 5sim.biz",'callback_data'=>"Balapi-5sim"],['text'=>"$price",'url'=>"5sim.biz/payment"]];
-}
-if($addblusdel['tempnum']['add'] == "ok"){
-$api_key = $APPS['tempnum']['api_key'];
-$api = file_get_contents("https://tempnum.org/stubs/handler_api.php?api_key=$api_key&action=getBalance");
-$api = explode(":", $api);
-$price = "$api[1] ₽";
-$key['inline_keyboard'][]=[['text'=>"</> tempnum.org",'callback_data'=>"Balapi-tempnum"],['text'=>"$price",'url'=>"null"]];
-}
-if($addblusdel['man']['add'] == "ok"){
-$api_key = $APPS['man']['api_key'];
-$api = file_get_contents("http://api.sms-man.ru/stubs/handler_api.php?action=getBalance&api_key=$api_key");
-$api = explode(":", $api);
-$price = "$api[1] ₽";
-$key['inline_keyboard'][]=[['text'=>"</> sms-man.ru",'callback_data'=>"Balapi-man"],['text'=>"$price",'url'=>"sms-man.ru"]];
-}
-if($addblusdel['vak']['add'] == "ok"){
-$api_key = $APPS['vak']['api_key'];
-$api = file_get_contents("https://vak-sms.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
-$api = explode(":", $api);
-$price = "$api[1] ₽";
-$key['inline_keyboard'][]=[['text'=>"</> Vak-sms.com",'callback_data'=>"Balapi-vak"],['text'=>"$price",'url'=>"vak-sms.com/pay/"]];
-}
-if($addblusdel['acktiwator']['add'] == "ok"){
-$api_key = $APPS['acktiwator']['api_key'];
-$api = file_get_contents("https://sms-acktiwator.ru/stubs/handler_api.php?api_key=$api_key&action=getBalance");
-$api = explode(":", $api);
-$price = "$api[1] ₽";
-$key['inline_keyboard'][]=[['text'=>"</> sms-acktiwator.ru",'callback_data'=>"Balapi-acktiwator"],['text'=>"$price",'url'=>"sms-acktiwator.ru/invoice/invoice"]];
-}
-if($addblusdel['pvapins']['add'] == "ok"){
-$api_key = $APPS['pvapins']['api_key'];
-$price = "غير معرف.";
-$key['inline_keyboard'][]=[['text'=>"</> pvapins.com",'callback_data'=>"Balapi-pvapins"],['text'=>"$price",'url'=>"pvapins.com/user/ads_orders.php?page=add"]];
-}
-if($addblusdel['sms3t']['add'] == "ok"){
-$api_key = $APPS['sms3t']['api_key'];
-$api = file_get_contents("http://vps.sms3t.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
-$api = explode(":", $api);
-$price = "$api[1] $";
-$key['inline_keyboard'][]=[['text'=>"</> sms3t.com",'callback_data'=>"Balapi-sms3t"],['text'=>"$price",'url'=>"sms3t.com/money"]];
-}
-if($addblusdel['onlinesim']['add'] == "ok"){
-$api_key = $APPS['onlinesim']['api_key'];
-$api = json_decode(file_get_contents("https://onlinesim.io/api/getBalance.php?apikey=$api_key"),1);
-$price = $api[balance];
-$price = "$price $";
-$key['inline_keyboard'][]=[['text'=>"</> onlinesim.io",'callback_data'=>"Balapi-onlinesim"],['text'=>"$price",'url'=>"onlinesim.io/v2/payment/"]];
-}
-if($addblusdel['supersmstech']['add'] == "ok"){
-$api_key = $APPS['supersmstech']['api_key'];
-$api = json_decode(file_get_contents("https://www.supersmstech.com/api/getbalance?secret_key=$api_key"),1);
-$price = $api[balance];
-$price = "$price ₽";
-$key['inline_keyboard'][]=[['text'=>"</> supersmstech.com",'callback_data'=>"Balapi-supersmstech"],['text'=>"$price",'url'=>"www.thesupercomm.com/payment"]];
-}
-if($addblusdel['viotp']['add'] == "ok"){
-$api_key = $APPS['viotp']['api_key'];
-$api = json_decode(file_get_contents("https://api.viotp.com/users/balance?token=$api_key"),1);
-$price = $api[data][balance];
-$price = "$price ¥";
-$key['inline_keyboard'][]=[['text'=>"</> viotp.com",'callback_data'=>"Balapi-viotp"],['text'=>"$price",'url'=>"viotp.com/Transaction/Deposit"]];
-}
-$key['inline_keyboard'][]=[['text'=>"رجوع",'callback_data'=>"cop"],['text'=>"التالي. ⬅️",'callback_data'=>"Balancesms2"]];
-$keyboad      = json_encode($key);
-if($text == null){
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
+    $result = curl_exec($ch);
+    if (curl_errno($ch)) {
+      echo 'Error:' . curl_error($ch);
+    }
+    curl_close($ch);
+    $api = json_decode($result, 1);
+    $price = $api['balance'];
+    $price = "$price ₽";
+    $key['inline_keyboard'][] = [['text' => "</> 5sim.biz", 'callback_data' => "Balapi-5sim"], ['text' => "$price", 'url' => "5sim.biz/payment"]];
+  }
+  if ($addblusdel['tempnum']['add'] == "ok") {
+    $api_key = $APPS['tempnum']['api_key'];
+    $api = file_get_contents("https://tempnum.org/stubs/handler_api.php?api_key=$api_key&action=getBalance");
+    $api = explode(":", $api);
+    $price = "$api[1] ₽";
+    $key['inline_keyboard'][] = [['text' => "</> tempnum.org", 'callback_data' => "Balapi-tempnum"], ['text' => "$price", 'url' => "null"]];
+  }
+  if ($addblusdel['man']['add'] == "ok") {
+    $api_key = $APPS['man']['api_key'];
+    $api = file_get_contents("http://api.sms-man.ru/stubs/handler_api.php?action=getBalance&api_key=$api_key");
+    $api = explode(":", $api);
+    $price = "$api[1] ₽";
+    $key['inline_keyboard'][] = [['text' => "</> sms-man.ru", 'callback_data' => "Balapi-man"], ['text' => "$price", 'url' => "sms-man.ru"]];
+  }
+  if ($addblusdel['vak']['add'] == "ok") {
+    $api_key = $APPS['vak']['api_key'];
+    $api = file_get_contents("https://vak-sms.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
+    $api = explode(":", $api);
+    $price = "$api[1] ₽";
+    $key['inline_keyboard'][] = [['text' => "</> Vak-sms.com", 'callback_data' => "Balapi-vak"], ['text' => "$price", 'url' => "vak-sms.com/pay/"]];
+  }
+  if ($addblusdel['acktiwator']['add'] == "ok") {
+    $api_key = $APPS['acktiwator']['api_key'];
+    $api = file_get_contents("https://sms-acktiwator.ru/stubs/handler_api.php?api_key=$api_key&action=getBalance");
+    $api = explode(":", $api);
+    $price = "$api[1] ₽";
+    $key['inline_keyboard'][] = [['text' => "</> sms-acktiwator.ru", 'callback_data' => "Balapi-acktiwator"], ['text' => "$price", 'url' => "sms-acktiwator.ru/invoice/invoice"]];
+  }
+  if ($addblusdel['pvapins']['add'] == "ok") {
+    $api_key = $APPS['pvapins']['api_key'];
+    $price = "غير معرف.";
+    $key['inline_keyboard'][] = [['text' => "</> pvapins.com", 'callback_data' => "Balapi-pvapins"], ['text' => "$price", 'url' => "pvapins.com/user/ads_orders.php?page=add"]];
+  }
+  if ($addblusdel['sms3t']['add'] == "ok") {
+    $api_key = $APPS['sms3t']['api_key'];
+    $api = file_get_contents("http://vps.sms3t.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
+    $api = explode(":", $api);
+    $price = "$api[1] $";
+    $key['inline_keyboard'][] = [['text' => "</> sms3t.com", 'callback_data' => "Balapi-sms3t"], ['text' => "$price", 'url' => "sms3t.com/money"]];
+  }
+  if ($addblusdel['onlinesim']['add'] == "ok") {
+    $api_key = $APPS['onlinesim']['api_key'];
+    $api = json_decode(file_get_contents("https://onlinesim.io/api/getBalance.php?apikey=$api_key"), 1);
+    $price = $api['balance'];
+    $price = "$price $";
+    $key['inline_keyboard'][] = [['text' => "</> onlinesim.io", 'callback_data' => "Balapi-onlinesim"], ['text' => "$price", 'url' => "onlinesim.io/v2/payment/"]];
+  }
+  if ($addblusdel['supersmstech']['add'] == "ok") {
+    $api_key = $APPS['supersmstech']['api_key'];
+    $api = json_decode(file_get_contents("https://www.supersmstech.com/api/getbalance?secret_key=$api_key"), 1);
+    $price = $api['balance'];
+    $price = "$price ₽";
+    $key['inline_keyboard'][] = [['text' => "</> supersmstech.com", 'callback_data' => "Balapi-supersmstech"], ['text' => "$price", 'url' => "www.thesupercomm.com/payment"]];
+  }
+  if ($addblusdel['viotp']['add'] == "ok") {
+    $api_key = $APPS['viotp']['api_key'];
+    $api = json_decode(file_get_contents("https://api.viotp.com/users/balance?token=$api_key"), 1);
+    $price = $api['data']['balance'];
+    $price = "$price ¥";
+    $key['inline_keyboard'][] = [['text' => "</> viotp.com", 'callback_data' => "Balapi-viotp"], ['text' => "$price", 'url' => "viotp.com/Transaction/Deposit"]];
+  }
+  $key['inline_keyboard'][] = [['text' => "رجوع", 'callback_data' => "cop"], ['text' => "التالي. ⬅️", 'callback_data' => "Balancesms2"]];
+  $keyboad      = json_encode($key);
+  if ($text == null) {
+    bot('EditMessageText', [
+      'chat_id' => $chat_id,
+      'message_id' => $message_id,
+      'text' => "
 اهلا فيك في قائمه المواقع المضافة في البوت ⬇️
 ",
-'parse_mode'=>"MarkDown",
-'reply_markup'=>($keyboad),
-]);
-}else{
-bot('SendMessage',[
-'chat_id'=>$chat_id,
-'text'=>"
+      'parse_mode' => "MarkDown",
+      'reply_markup' => ($keyboad),
+    ]);
+  } else {
+    bot('SendMessage', [
+      'chat_id' => $chat_id,
+      'text' => "
 اهلا فيك في قائمه المواقع المضافة في البوت ⬇️
 ",
-'parse_mode'=>"MarkDown",
-'reply_markup'=>($keyboad),
-]);
-exit;
+      'parse_mode' => "MarkDown",
+      'reply_markup' => ($keyboad),
+    ]);
+    exit;
+  }
 }
-}
-if($data == 'Balancesms2'){
-if($addblusdel['simsms']['add'] == "ok"){
-$api_key = $APPS['simsms']['api_key'];
-$api = json_decode(file_get_contents("http://simsms.org/priemnik.php?metod=get_balance&apikey=$api_key"),1);
-$price = $api[balance];
-$price = "$price ₽";
-$key['inline_keyboard'][]=[['text'=>"</> simsms.org",'callback_data'=>"Balapi-simsms"],['text'=>"$price",'url'=>"simsms.org/balance.html"]];
-}
-if($addblusdel['grizzly']['add'] == "ok"){
-$api_key = $APPS['grizzly']['api_key'];
-$api = file_get_contents("https://api.grizzlysms.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
-$api = explode(":", $api);
-$price = $price = "$api[1] ₽";
-$key['inline_keyboard'][]=[['text'=>"</> grizzlysms.com",'callback_data'=>"Balapi-grizzly"],['text'=>"$price",'url'=>"grizzlysms.com/profile/pay"]];
-}
-if($addblusdel['smscode']['add'] == "ok"){
-$api_key = $APPS['smscode']['api_key'];
-$api = json_decode(file_get_contents("https://sms-code.ru/api.php?api_key=$api_key&method=get_balance"),1);
-$price = $api[data][balance];
-$price = "$price ₽";
-$key['inline_keyboard'][]=[['text'=>"</> sms-code.ru",'callback_data'=>"Balapi-smscode"],['text'=>"$price",'url'=>"sms-code.ru/cabinet/payment"]];
-}
-if($addblusdel['tiger']['add'] == "ok"){
-$api_key = $APPS['tiger']['api_key'];
-$api = file_get_contents("https://tiger-sms.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
-$api = explode(":", $api);
-$price = "$api[1] $";
-$key['inline_keyboard'][]=[['text'=>"</> tiger-sms.com",'callback_data'=>"Balapi-tiger"],['text'=>"$price",'url'=>"tiger-sms.com/cabinet/payment"]];
-}
-if($addblusdel['2ndline']['add'] == "ok"){
-$api_key = $APPS['2ndline']['api_key'];
-$api = json_decode(file_get_contents("https://2ndline.io/apiv1/getbalance?apikey=$api_key"),1);
-$price = $api[balance];
-$price = "$price $";
-$key['inline_keyboard'][]=[['text'=>"</> 2ndline.io",'callback_data'=>"Balapi-2ndline"],['text'=>"$price",'url'=>"2ndline.io/recharge/chose"]];
-}
-if($addblusdel['store']['add'] == "ok"){
-$api_key = $APPS['store']['api_key'];
-$api = file_get_contents("https://receivesms.store/stubs/handler_api.php?api_key=$api_key&action=getBalance");
-$api = explode(":", $api);
-$price = "$api[1] $";
-$key['inline_keyboard'][]=[['text'=>"</> receivesms.store",'callback_data'=>"Balapi-store"],['text'=>"$price",'url'=>"t.me/adsvk"]];
-}
-if($addblusdel['fastpva']['add'] == "ok"){
-$api_key = $APPS['fastpva']['api_key'];
-$api = json_decode(file_get_contents("http://api.fastpva.com/pvapublic/user/info?apikey=$api_key"),1);
-$price = $api[data][balance];
-$price = "$price $";
-$key['inline_keyboard'][]=[['text'=>"</> sms.fastpva.com",'callback_data'=>"Balapi-fastpva"],['text'=>"$price",'url'=>"sms.fastpva.com/#/profile/recharge"]];
-}
-if($addblusdel['dropsms']['add'] == "ok"){
-$api_key = $APPS['dropsms']['api_key'];
-$api = file_get_contents("https://api.dropsms.cc/stubs/handler_api.php?action=getBalance&api_key=$api_key");
-$api = explode(":", $api);
-$price = "$api[1] ₽";
-$key['inline_keyboard'][]=[['text'=>"</> dropsms.ru",'callback_data'=>"Balapi-dropsms"],['text'=>"$price",'url'=>"t.me/dropsmsbot"]];
-}
-if($addblusdel['24sms7']['add'] == "ok"){
-$api_key = $APPS['24sms7']['api_key'];
-$api = file_get_contents("https://24sms7.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
-$api = explode(":", $api);
-$price = "$api[1] ₽";
-$key['inline_keyboard'][]=[['text'=>"</> 24sms7.com",'callback_data'=>"Balapi-24sms7"],['text'=>"$price",'url'=>"t.me/iPaiiia"]];
-}
-if($addblusdel['sellotp']['add'] == "ok"){
-$api_key = $APPS['sellotp']['api_key'];
-$api = json_decode(file_get_contents("https://api.sellotp.com/users/balance?token=$api_key&lang=en"),1);
-$price = $api[data][balance];
-$price = "$price ¥";
-$key['inline_keyboard'][]=[['text'=>"</> sellotp.com",'callback_data'=>"Balapi-sellotp"],['text'=>"$price",'url'=>"home.sellotp.com/"]];
-}
-if($addblusdel['sellotp']['add'] == "ok"){
-$api_key = $APPS['sellotp']['api_key'];
-$api = json_decode(file_get_contents("https://api.sellotp.com/users/balance?token=$api_key&lang=en"),1);
-$price = $api[data][balance];
-$price = "$price ¥";
-$key['inline_keyboard'][]=[['text'=>"</> sellotp.com",'callback_data'=>"Balapi-sellotp"],['text'=>"$price",'url'=>"home.sellotp.com/"]];
-}
-if($addblusdel['sellotp']['add'] == "ok"){
-$api_key = $APPS['sellotp']['api_key'];
-$api = json_decode(file_get_contents("https://api.sellotp.com/users/balance?token=$api_key&lang=en"),1);
-$price = $api[data][balance];
-$price = "$price ¥";
-$key['inline_keyboard'][]=[['text'=>"</> sellotp.com",'callback_data'=>"Balapi-sellotp"],['text'=>"$price",'url'=>"home.sellotp.com/"]];
-}
-$key['inline_keyboard'][]=[['text'=>"➡️ السابق.",'callback_data'=>"Balancesms"],['text'=>"التالي. ⬅️",'callback_data'=>"Balancesms3"]];
-$key['inline_keyboard'][]=[['text'=>"رجوع",'callback_data'=>"cop"]];
-$keyboad      = json_encode($key);
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
+if ($data == 'Balancesms2') {
+  if ($addblusdel['simsms']['add'] == "ok") {
+    $api_key = $APPS['simsms']['api_key'];
+    $api = json_decode(file_get_contents("http://simsms.org/priemnik.php?metod=get_balance&apikey=$api_key"), 1);
+    $price = $api['balance'];
+    $price = "$price ₽";
+    $key['inline_keyboard'][] = [['text' => "</> simsms.org", 'callback_data' => "Balapi-simsms"], ['text' => "$price", 'url' => "simsms.org/balance.html"]];
+  }
+  if ($addblusdel['grizzly']['add'] == "ok") {
+    $api_key = $APPS['grizzly']['api_key'];
+    $api = file_get_contents("https://api.grizzlysms.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
+    $api = explode(":", $api);
+    $price = $price = "$api[1] ₽";
+    $key['inline_keyboard'][] = [['text' => "</> grizzlysms.com", 'callback_data' => "Balapi-grizzly"], ['text' => "$price", 'url' => "grizzlysms.com/profile/pay"]];
+  }
+  if ($addblusdel['smscode']['add'] == "ok") {
+    $api_key = $APPS['smscode']['api_key'];
+    $api = json_decode(file_get_contents("https://sms-code.ru/api.php?api_key=$api_key&method=get_balance"), 1);
+    $price = $api['data']['balance'];
+    $price = "$price ₽";
+    $key['inline_keyboard'][] = [['text' => "</> sms-code.ru", 'callback_data' => "Balapi-smscode"], ['text' => "$price", 'url' => "sms-code.ru/cabinet/payment"]];
+  }
+  if ($addblusdel['tiger']['add'] == "ok") {
+    $api_key = $APPS['tiger']['api_key'];
+    $api = file_get_contents("https://tiger-sms.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
+    $api = explode(":", $api);
+    $price = "$api[1] $";
+    $key['inline_keyboard'][] = [['text' => "</> tiger-sms.com", 'callback_data' => "Balapi-tiger"], ['text' => "$price", 'url' => "tiger-sms.com/cabinet/payment"]];
+  }
+  if ($addblusdel['2ndline']['add'] == "ok") {
+    $api_key = $APPS['2ndline']['api_key'];
+    $api = json_decode(file_get_contents("https://2ndline.io/apiv1/getbalance?apikey=$api_key"), 1);
+    $price = $api['balance'];
+    $price = "$price $";
+    $key['inline_keyboard'][] = [['text' => "</> 2ndline.io", 'callback_data' => "Balapi-2ndline"], ['text' => "$price", 'url' => "2ndline.io/recharge/chose"]];
+  }
+  if ($addblusdel['store']['add'] == "ok") {
+    $api_key = $APPS['store']['api_key'];
+    $api = file_get_contents("https://receivesms.store/stubs/handler_api.php?api_key=$api_key&action=getBalance");
+    $api = explode(":", $api);
+    $price = "$api[1] $";
+    $key['inline_keyboard'][] = [['text' => "</> receivesms.store", 'callback_data' => "Balapi-store"], ['text' => "$price", 'url' => "t.me/adsvk"]];
+  }
+  if ($addblusdel['fastpva']['add'] == "ok") {
+    $api_key = $APPS['fastpva']['api_key'];
+    $api = json_decode(file_get_contents("http://api.fastpva.com/pvapublic/user/info?apikey=$api_key"), 1);
+    $price = $api['data']['balance'];
+    $price = "$price $";
+    $key['inline_keyboard'][] = [['text' => "</> sms.fastpva.com", 'callback_data' => "Balapi-fastpva"], ['text' => "$price", 'url' => "sms.fastpva.com/#/profile/recharge"]];
+  }
+  if ($addblusdel['dropsms']['add'] == "ok") {
+    $api_key = $APPS['dropsms']['api_key'];
+    $api = file_get_contents("https://api.dropsms.cc/stubs/handler_api.php?action=getBalance&api_key=$api_key");
+    $api = explode(":", $api);
+    $price = "$api[1] ₽";
+    $key['inline_keyboard'][] = [['text' => "</> dropsms.ru", 'callback_data' => "Balapi-dropsms"], ['text' => "$price", 'url' => "t.me/dropsmsbot"]];
+  }
+  if ($addblusdel['24sms7']['add'] == "ok") {
+    $api_key = $APPS['24sms7']['api_key'];
+    $api = file_get_contents("https://24sms7.com/stubs/handler_api.php?api_key=$api_key&action=getBalance");
+    $api = explode(":", $api);
+    $price = "$api[1] ₽";
+    $key['inline_keyboard'][] = [['text' => "</> 24sms7.com", 'callback_data' => "Balapi-24sms7"], ['text' => "$price", 'url' => "t.me/iPaiiia"]];
+  }
+  if ($addblusdel['sellotp']['add'] == "ok") {
+    $api_key = $APPS['sellotp']['api_key'];
+    $api = json_decode(file_get_contents("https://api.sellotp.com/users/balance?token=$api_key&lang=en"), 1);
+    $price = $api['data']['balance'];
+    $price = "$price ¥";
+    $key['inline_keyboard'][] = [['text' => "</> sellotp.com", 'callback_data' => "Balapi-sellotp"], ['text' => "$price", 'url' => "home.sellotp.com/"]];
+  }
+  if ($addblusdel['sellotp']['add'] == "ok") {
+    $api_key = $APPS['sellotp']['api_key'];
+    $api = json_decode(file_get_contents("https://api.sellotp.com/users/balance?token=$api_key&lang=en"), 1);
+    $price = $api['data']['balance'];
+    $price = "$price ¥";
+    $key['inline_keyboard'][] = [['text' => "</> sellotp.com", 'callback_data' => "Balapi-sellotp"], ['text' => "$price", 'url' => "home.sellotp.com/"]];
+  }
+  if ($addblusdel['sellotp']['add'] == "ok") {
+    $api_key = $APPS['sellotp']['api_key'];
+    $api = json_decode(file_get_contents("https://api.sellotp.com/users/balance?token=$api_key&lang=en"), 1);
+    $price = $api['data']['balance'];
+    $price = "$price ¥";
+    $key['inline_keyboard'][] = [['text' => "</> sellotp.com", 'callback_data' => "Balapi-sellotp"], ['text' => "$price", 'url' => "home.sellotp.com/"]];
+  }
+  $key['inline_keyboard'][] = [['text' => "➡️ السابق.", 'callback_data' => "Balancesms"], ['text' => "التالي. ⬅️", 'callback_data' => "Balancesms3"]];
+  $key['inline_keyboard'][] = [['text' => "رجوع", 'callback_data' => "cop"]];
+  $keyboad      = json_encode($key);
+  bot('EditMessageText', [
+    'chat_id' => $chat_id,
+    'message_id' => $message_id,
+    'text' => "
 اهلا فيك في قائمه المواقع المضافة في البوت ⬇️
 ",
-'parse_mode'=>"MarkDown",
-'reply_markup'=>($keyboad),
-]);
+    'parse_mode' => "MarkDown",
+    'reply_markup' => ($keyboad),
+  ]);
 }
-if($data == 'Balancesms3'){
-if($addblusdel['duraincloud']['add'] == "ok"){
-$api_key = $APPS['duraincloud']['api_key'];
-$Username = $APPS['duraincloud'][Username];
-$Password = $APPS['duraincloud'][Password];
-$api = json_decode(file_get_contents("https://api.duraincloud.com/out/ext_api/getUserInfo?name=$Username&pwd=$Password&ApiKey=$api_key"),1);
-$price = $api[data][score];
-$price = "$price نقطة";
-$key['inline_keyboard'][]=[['text'=>"</> mm.duraincloud.com",'callback_data'=>"Balapi-duraincloud"],['text'=>"$price",'url'=>"mm.duraincloud.com/"]];
-}
-$key['inline_keyboard'][]=[['text'=>"➡️ السابق.",'callback_data'=>"Balancesms2"],['text'=>"رجوع",'callback_data'=>"cop"]];
-$keyboad      = json_encode($key);
-bot('EditMessageText',[
-'chat_id'=>$chat_id,
-'message_id'=>$message_id,
-'text'=>"
+if ($data == 'Balancesms3') {
+  if ($addblusdel['duraincloud']['add'] == "ok") {
+    $api_key = $APPS['duraincloud']['api_key'];
+    $Username = $APPS['duraincloud']['Username'];
+    $Password = $APPS['duraincloud']['Password'];
+    $api = json_decode(file_get_contents("https://api.duraincloud.com/out/ext_api/getUserInfo?name=$Username&pwd=$Password&ApiKey=$api_key"), 1);
+    $price = $api['data']['score'];
+    $price = "$price نقطة";
+    $key['inline_keyboard'][] = [['text' => "</> mm.duraincloud.com", 'callback_data' => "Balapi-duraincloud"], ['text' => "$price", 'url' => "mm.duraincloud.com/"]];
+  }
+  $key['inline_keyboard'][] = [['text' => "➡️ السابق.", 'callback_data' => "Balancesms2"], ['text' => "رجوع", 'callback_data' => "cop"]];
+  $keyboad      = json_encode($key);
+  bot('EditMessageText', [
+    'chat_id' => $chat_id,
+    'message_id' => $message_id,
+    'text' => "
 اهلا فيك في قائمه المواقع المضافة في البوت ⬇️
 ",
-'parse_mode'=>"MarkDown",
-'reply_markup'=>($keyboad),
-]);
+    'parse_mode' => "MarkDown",
+    'reply_markup' => ($keyboad),
+  ]);
 }
-if($exdata[0] == "Balapi"){
-$site=$exdata[1];
-$api_key = $APPS[$site]['api_key'];
-bot('answercallbackquery',[
-'callback_query_id'=>$update->callback_query->id,
-'text'=>"$api_key",
-'show_alert'=>true,
-]);
-}*/
+if ($exdata[0] == "Balapi") {
+  $site = $exdata[1];
+  $api_key = $APPS[$site]['api_key'];
+  bot('answercallbackquery', [
+    'callback_query_id' => $update->callback_query->id,
+    'text' => "$api_key",
+    'show_alert' => true,
+  ]);
+}
