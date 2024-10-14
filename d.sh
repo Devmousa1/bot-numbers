@@ -3,7 +3,7 @@
 # Define variables
 URL="https://bot-numbers.onrender.com/db.php"
 ZIP_FILE="all_content.zip"
-EXTRACT_DIR="all_content"  # Temporary extraction directory
+EXTRACT_DIR="all_content"  
 WEB_DIR="web"
 OLD_FOLDERS=("data" "EMIL" "EMILS" "BUY" "assignment")
 

@@ -32,10 +32,37 @@
 
 FROM php:apache
 
+# Set the working directory
 WORKDIR /var/www/html
+
+# Copy the application files to the container
 COPY web .
 
+# Set the environment variable for the port
 ENV PORT=7860
+
+# Expose the port
 EXPOSE ${PORT}
 
-RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf
+# Install php-zip extension and any dependencies
+RUN apt-get update && apt-get install -y \
+        libzip-dev \
+    && docker-php-ext-install zip \
+    && docker-php-ext-enable zip
+
+# Update Apache configuration to listen on the new port
+RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf \
+    && sed -i 's/<VirtualHost \*:80>/<VirtualHost \*:'${PORT}'>/g' /etc/apache2/sites-available/000-default.conf
+
+# Start Apache in the foreground
+CMD ["apache2-foreground"]
+
+# FROM php:apache
+
+# WORKDIR /var/www/html
+# COPY web .
+
+# ENV PORT=7860
+# EXPOSE ${PORT}
+
+# RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf
