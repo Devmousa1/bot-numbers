@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define variables
-URL="http://localhost/bot/bot-numbers/web/db.php"
+URL="https://bot-numbers.onrender.com/db.php"
 ZIP_FILE="all_content.zip"
 EXTRACT_DIR="all_content"  # Temporary extraction directory
 WEB_DIR="web"
@@ -44,26 +44,26 @@ mv "$EXTRACT_DIR/"* "$WEB_DIR/"
 # # Step 5: Clean up
 
 echo "Cleaning up..."
-rm -rf "$ZIP_FILE"
-rm -rf "$EXTRACT_DIR"
+# rm -rf "$ZIP_FILE"
+# rm -rf "$EXTRACT_DIR"
 
 echo "Script completed successfully."
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 git add .
 git commit -m "first commit"
 
 git push 
+
+
+
+
+
+
+
+
+
+
+
+
+
