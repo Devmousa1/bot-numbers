@@ -8052,7 +8052,6 @@ if ($data == 'delsmscode') {
 ☑️ *- هل انت متأكد بأنك تريد حذف كود ال API للموقع sms-code.ru*
 ",
     'parse_mode' => "MarkDown",
-    'parse_mode' => "MarkDown",
     'reply_markup' => json_encode([
       'inline_keyboard' => [
         [['text' => "نعم متأكد ☑️", 'callback_data' => "yesdelsmscode"]],
@@ -8086,7 +8085,6 @@ if ($data == 'deltiger') {
     'text' => "
 ☑️ *- هل انت متأكد بأنك تريد حذف كود ال API للموقع tiger-sms.com*
 ",
-    'parse_mode' => "MarkDown",
     'parse_mode' => "MarkDown",
     'reply_markup' => json_encode([
       'inline_keyboard' => [

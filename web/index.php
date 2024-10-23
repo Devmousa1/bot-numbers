@@ -12,13 +12,15 @@ mkdir('assignment');
 mkdir('data/id');
 mkdir('data/txt');
 mkdir('data/api');
+
 $API_KEY = '8117101442:AAGk7yqcJAP4iExThDVLYK_rf8FzFEWb4NE';
 define('API_KEY', $API_KEY);
-echo file_get_contents("https://api.telegram.org/bot" . API_KEY . "/setwebhook?url=" . $_SERVER['SERVER_NAME'] . "" . $_SERVER['SCRIPT_NAME']);
+echo file_get_contents("https://api.telegram.org/bot" . $API_KEY . "/setwebhook?url=" . $_SERVER['SERVER_NAME'] . "" . $_SERVER['SCRIPT_NAME']);
 function bot($method, $datas = [])
 {
+    global $API_KEY;
     $amrakl = http_build_query($datas);
-    $url = "https://api.telegram.org/bot" . API_KEY . "/" . $method . "?$amrakl";
+    $url = "https://api.telegram.org/bot" . $API_KEY . "/" . $method . "?$amrakl";
     $amrakl = file_get_contents($url);
     return json_decode($amrakl);
 }
