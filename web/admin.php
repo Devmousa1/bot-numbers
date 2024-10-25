@@ -5709,19 +5709,21 @@ if ($exdata[0] == "addservice") {
     'text' => "
 🎗 - تم حفظ الدولة والتطبيق ✅
 
-☑️ - الدولة: $name 🌀
-✳️ - التطبيق: $APP 📲
-🌐 - الموقع: $API
- $all
-$virtual161
-$virtual16
- $adds
- $price
+☑️ - الدولة: $name 🌀 (" . gettype($name) . ")
+✳️ - التطبيق: $APP 📲 (" . gettype($APP) . ")
+🌐 - الموقع: $API (" . gettype($API) . ")
+all: $all (" . gettype($all) . ")
+virtual161: $virtual161 (" . gettype($virtual161) . ")
+virtual16: $virtual16 (" . gettype($virtual16) . ")
+adds: $adds (" . gettype($adds) . ")
+price: $price (" . gettype($price) . ")
 https://5sim.biz/v1/guest/products/$zx/any
-$zx
+zx: $zx (" . gettype($zx) . ")
 https://5sim.biz/v1/guest/prices?country=$zx&product=$app_5sim
+app_5sim: $app_5sim (" . gettype($app_5sim) . ")
 🅿️ - قم ب إختيار السيرفر لهذه الدولة ⏬
-",
+"
+  ,
     'reply_markup' => json_encode([
       'inline_keyboard' => [
         [['text' => "$any1", 'callback_data' => "addprice-$app-$add-$api-$country-$any"], ['text' => "$any", 'callback_data' => "addprice-$app-$add-$api-$country-$any"]],
