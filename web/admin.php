@@ -5712,6 +5712,7 @@ if ($exdata[0] == "addservice") {
 ☑️ - الدولة: $name 🌀
 ✳️ - التطبيق: $APP 📲
 🌐 - الموقع: $API
+ $all
 $virtual161
 $virtual16
  $adds
