@@ -5178,7 +5178,7 @@ if ($exdata[0] == "addservice") {
   $name = $_co['country'][$country];
   $zx = $o_co['country'][$country];
   $app_5sim = str_replace(["wa", "tg", "fb", "ig", "tw", "lf", "go", "im", "vi", "fu", "nf", "au", "ot"], ["whatsapp", "telegram", "facebook", "instagram", "twitter", "tiktok", "google", "imo", "viber", "snapchat", "netflix", "haraj", "other"], $app);
-  $all = json_decode(file_get_contents("https://5sim.biz/v1/guest/prices?country=$country&product=$app_5sim"), 1);
+  $all = json_decode(file_get_contents("https://5sim.biz/v1/guest/prices?country=$zx&product=$app_5sim"), 1);
   $adds = $all[$zx][$app_5sim]["019"]['count'];
   $price = $all[$zx][$app_5sim]["019"]['cost'];
   if ($price != null) {
@@ -5712,6 +5712,9 @@ if ($exdata[0] == "addservice") {
 ☑️ - الدولة: $name 🌀
 ✳️ - التطبيق: $APP 📲
 🌐 - الموقع: $API
+$name
+$zx
+https://5sim.biz/v1/guest/prices?country=$zx&product=$app_5sim
 🅿️ - قم ب إختيار السيرفر لهذه الدولة ⏬
 ",
     'reply_markup' => json_encode([
