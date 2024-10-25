@@ -5713,6 +5713,9 @@ if ($exdata[0] == "addservice") {
 ✳️ - التطبيق: $APP 📲
 🌐 - الموقع: $API
 $virtual161
+$virtual16
+ $adds
+ $price
 https://5sim.biz/v1/guest/products/$zx/any
 $zx
 https://5sim.biz/v1/guest/prices?country=$zx&product=$app_5sim
