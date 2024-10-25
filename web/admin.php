@@ -5712,14 +5712,15 @@ if ($exdata[0] == "addservice") {
 ☑️ - الدولة: $name 🌀
 ✳️ - التطبيق: $APP 📲
 🌐 - الموقع: $API
-$name
+$virtual161
+https://5sim.biz/v1/guest/products/$zx/any
 $zx
 https://5sim.biz/v1/guest/prices?country=$zx&product=$app_5sim
 🅿️ - قم ب إختيار السيرفر لهذه الدولة ⏬
 ",
     'reply_markup' => json_encode([
       'inline_keyboard' => [
-        [['text' => "any1", 'callback_data' => "addprice-$app-$add-$api-$country-$any"], ['text' => "any", 'callback_data' => "addprice-$app-$add-$api-$country-$any"]],
+        [['text' => "$any1", 'callback_data' => "addprice-$app-$add-$api-$country-$any"], ['text' => "$any", 'callback_data' => "addprice-$app-$add-$api-$country-$any"]],
         [['text' => "$bee0191", 'callback_data' => "addprice-$app-$add-$api-$country-$bee019"], ['text' => "$bee019", 'callback_data' => "addprice-$app-$add-$api-$country-$bee019"]],
         [['text' => "$activ1", 'callback_data' => "addprice-$app-$add-$api-$country-$activ"], ['text' => "$activ", 'callback_data' => "addprice-$app-$add-$api-$country-$activ"]],
         [['text' => "$altel1", 'callback_data' => "addprice-$app-$add-$api-$country-$altel"], ['text' => "$altel", 'callback_data' => "addprice-$app-$add-$api-$country-$altel"]],
