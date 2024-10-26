@@ -5950,7 +5950,7 @@ if ($exdata[0] == "addservice") {
 ✳️ - التطبيق: $APP 📲 (" . gettype($APP) . ")
 🌐 - الموقع: $API (" . gettype($API) . ")
 man  $result
-all: $all (" . gettype($all) . print_r($all). ")
+all: $all (" . gettype($all) . print_r($result). ")
 virtual161: $virtual161 (" . gettype($virtual161) . ")
 virtual16: $virtual16 (" . gettype($virtual16) . ")
 adds: $adds (" . gettype($adds) . ")
