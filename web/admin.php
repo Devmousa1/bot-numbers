@@ -5179,6 +5179,7 @@ if ($exdata[0] == "addservice") {
   $zx = $o_co['country'][$country];
   $app_5sim = str_replace(["wa", "tg", "fb", "ig", "tw", "lf", "go", "im", "vi", "fu", "nf", "au", "ot"], ["whatsapp", "telegram", "facebook", "instagram", "twitter", "tiktok", "google", "imo", "viber", "snapchat", "netflix", "haraj", "other"], $app);
   $all = json_decode(file_get_contents("https://5sim.biz/v1/guest/prices?country=$zx&product=$app_5sim"), 1);
+  $man = json_decode(file_get_contents("https://5sim.biz/v1/guest/prices?country=$zx&product=$app_5sim"), 1);
   $adds = $all[$zx][$app_5sim]['019']['count'];
   $price = $all[$zx][$app_5sim]["019"]["cost"];
   if ($price != null) {
@@ -5712,6 +5713,7 @@ if ($exdata[0] == "addservice") {
 ☑️ - الدولة: $name 🌀 (" . gettype($name) . ")
 ✳️ - التطبيق: $APP 📲 (" . gettype($APP) . ")
 🌐 - الموقع: $API (" . gettype($API) . ")
+man $man
 all: $all (" . gettype($all) . print_r($all). ")
 virtual161: $virtual161 (" . gettype($virtual161) . ")
 virtual16: $virtual16 (" . gettype($virtual16) . ")
