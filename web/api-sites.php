@@ -1440,7 +1440,7 @@ if ($_GET["action"] == "getPrice") {
         $Location  = "mm.duraincloud.com";
     }
     #_____json
-    if ($status == "200") {
+    if ($status == 200) {
         $json['status'] = $status;
         $json['message'] = "The state price was brought";
         $json['price'] = $price;
