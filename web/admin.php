@@ -5838,7 +5838,7 @@ if ($exdata[0] == "addprice") {
   $name = $_co['country'][$country];
   $server = $_SERVER['SERVER_NAME'];
   $web = "https://blank-susy-mousa2-8a6a78ce.koyeb.app";
-  $api_price = json_decode(file_get_contents("https://" . $_SERVER['SERVER_NAME'] . "/api-sites.php?action=getPrice&site=$site&country=$country&app=$app&operator=$operator"), 1);
+  $api_price = json_decode(file_get_contents("https://" . $_SERVER['SERVER_NAME'] . "/$bot/api-sites.php?action=getPrice&site=$site&country=$country&app=$app&operator=$operator"), 1);
   $status = $api_price['status'];
   if ($status == "200") {
     $price = $api_price['price'];

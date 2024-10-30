@@ -145,7 +145,7 @@ $assignment2 = json_decode(file_get_contents('assignment/addid.json'), true);
 $APPS = json_decode(file_get_contents('data/api/apps.json'), true);
 #============={أوامر إضافية}===========#
 $me = bot('getme', ['bot'])->result->username;
-$bot = "mousa";
+$bot = "";
 $get = file_get_contents('data/txt/file.txt');
 $exxx = explode("\n", $get);
 $count = count($exxx);
