@@ -5842,7 +5842,7 @@ if ($exdata[0] == "addprice") {
   $status = $api_price['status'];
   if ($status == 200) {
     $price = $api_price['price'];
-  } elseif ($status == "0") {
+  } else  {
     $price = "❌";
   }
   $keybo = str_replace(["Ai", "Bi", "Ci", "Di", "Ei", "Fi", "Gi", "Hi", "Ji", "Ki", "Li", "Mi", "Ni", "Oi", "Pi", "Qi", "Ri", "Si", "Ti", "Ui", "Vi"], ["iA", "iA", "iA", "iB", "iC", "iD", "iE", "iF", "iG", "iE", "iH", "iJ", "iK", "iL", "iM", "iN", "iO", "iP", "iQ", "iE", "iR"], $api);
