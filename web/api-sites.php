@@ -1,19 +1,19 @@
 <?php
 #=========={api}==========#
-$site = $_GET["site"];
-$app = $_GET["app"];
-$country = $_GET["country"];
-$operator = $_GET["operator"];
-$number = $_GET["number"];
-$idnumber = $_GET["idnumber"];
-$smsnum = $_GET["smsnum"];
-$allsms = $_GET["allsms"];
+$site = isset($_GET["site"]) ? $_GET["site"] : null;
+$app = isset($_GET["app"]) ? $_GET["app"] : null;
+$country = isset($_GET["country"]) ? $_GET["country"] : null;
+$operator = isset($_GET["operator"]) ? $_GET["operator"] : null;
+$number = isset($_GET["number"]) ? $_GET["number"] : null;
+$idnumber = isset($_GET["idnumber"]) ? $_GET["idnumber"] : null;
+$smsnum = isset($_GET["smsnum"]) ? $_GET["smsnum"] : null;
+$allsms = isset($_GET["allsms"]) ? $_GET["allsms"] : null;
 include("name.php");
 $APPS = json_decode(file_get_contents("data/api/apps.json"), true);
 #________ALL
-$api_key = $APPS[$site]['api_key'];
-$Username = $APPS[$site]['Username'];
-$Password = $APPS[$site]['Password'];
+$api_key = isset($APPS[$site]['api_key']) ? $APPS[$site]['api_key'] : null;
+$Username = isset($APPS[$site]['Username']) ? $APPS[$site]['Username'] : null;
+$Password = isset($APPS[$site]['Password']) ? $APPS[$site]['Password'] : null;
 if ($site == "5sim") {
     $zx = $o_co['country'][$country];
     $app = str_replace(["wa", "tg", "fb", "ig", "tw", "lf", "go", "im", "vi", "fu", "nf", "au", "ot"], ["whatsapp", "telegram", "facebook", "instagram", "twitter", "tiktok", "google", "imo", "viber", "snapchat", "netflix", "haraj", "other"], $app);
@@ -1215,16 +1215,16 @@ if ($_GET["action"] == "getPrice") {
     if ($site == "5sim") {
         if ($operator != "any") {
             $api = json_decode(file_get_contents("https://5sim.biz/v1/guest/prices?country=$zx&product=$app"), 1);
-            print_r($api);
+            // print_r($api);
             $price = $api[$zx][$app][$operator]['cost'];
             $add = $api[$zx][$app][$operator]['count'];
-            echo "https://5sim.biz/v1/guest/prices?country=$zx&product=$app\n";
-            echo "price=>" . $price;
-            echo "\napp=>" . $app;
-            echo "\noperator" . $operator;
+            // echo "https://5sim.biz/v1/guest/prices?country=$zx&product=$app\n";
+            // echo "price=>" . $price;
+            // echo "\napp=>" . $app;
+            // echo "\noperator" . $operator;
            
         } else {
-            echo "i am else operator" ;
+            // echo "i am else operator" ;
             $price = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . $operator))->{$app}->Price;
             $add = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . $operator))->{$app}->Qty;
         }
