@@ -49,4 +49,3 @@ RUN apt-get update && apt-get install -y \
 RUN bash -c "sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf"
 
 # Set ServerName to suppress warning
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
