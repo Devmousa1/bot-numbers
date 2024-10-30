@@ -5840,7 +5840,7 @@ if ($exdata[0] == "addprice") {
   $web = "https://blank-susy-mousa2-8a6a78ce.koyeb.app";
   $api_price = json_decode(file_get_contents("https://" . $_SERVER['SERVER_NAME'] . "/$bot/api-sites.php?action=getPrice&site=$site&country=$country&app=$app&operator=$operator"), 1);
   $status = $api_price['status'];
-  if ($status == "200") {
+  if ($status == 200) {
     $price = $api_price['price'];
   } elseif ($status == "0") {
     $price = "❌";
@@ -6624,7 +6624,7 @@ if ($exdata[0] == "look") {
   $operator = $buy['number'][$zero]['operator'];
   $api_price = json_decode(file_get_contents("https://" . $_SERVER['SERVER_NAME'] . "/$bot/api-sites.php?action=getPrice&site=$site&country=$country&app=$app&operator=$operator"), 1);
   $status = $api_price['status'];
-  if ($status == "200") {
+  if ($status == 200) {
     $price = $api_price['price'];
   } elseif ($status == "0") {
     $price = "❌";

@@ -464,7 +464,7 @@ if ($_GET["action"] == "getNum") {
     $num = str_replace('+', '', $number);
     $number = "+$num";
     #_____json
-    if ($status == "200") {
+    if ($status == 200) {
         $json['status'] = $status;
         $json['message'] = "Number fetched successfully";
         if ($site == "2ndline") {
@@ -510,7 +510,7 @@ if ($_GET["action"] == "getNum2nd") {
     $num = str_replace('+', '', $number);
     $number = "+$num";
     #_____json
-    if ($status == "200") {
+    if ($status == 200) {
         $json['status'] = $status;
         $json['message'] = "Number fetched successfully";
         if ($site == "2ndline") {
@@ -581,7 +581,7 @@ if ($_GET["action"] == "getNum5sim") {
     $num = str_replace('+', '', $number);
     $number = "+$num";
     #_____json
-    if ($status == "200") {
+    if ($status == 200) {
         $json['status'] = $status;
         $json['message'] = "Number fetched successfully";
         $json['number'] = $number;
@@ -863,7 +863,7 @@ if ($_GET["action"] == "getStatus") {
     }
     $code = str_replace('-', '', $code);
     #_____json
-    if ($status == "200") {
+    if ($status == 200) {
         $json['status'] = $status;
         $json['message'] = "Verification code has been received";
         $json['code'] = $code;
@@ -935,7 +935,7 @@ if ($_GET["action"] == "getStatus2") {
     }
     $code = str_replace('-', '', $code);
     #_____json
-    if ($status == "200") {
+    if ($status == 200) {
         $json['status'] = $status;
         $json['message'] = "Verification code has been received";
         $json['code'] = $code;
@@ -1063,7 +1063,7 @@ if ($_GET["action"] == "setStatus") {
         $Location  = "mm.duraincloud.com";
     }
     #_____json
-    if ($status == "200") {
+    if ($status == 200) {
         $json['status'] = $status;
         $json['message'] = "The number has been terminated from the provider";
         $json['Location'] = $Location;
@@ -1199,7 +1199,7 @@ if ($_GET["action"] == "addBlack") {
         $Location  = "mm.duraincloud.com";
     }
     #_____json
-    if ($status == "200") {
+    if ($status == 200) {
         $json['status'] = $status;
         $json['message'] = "The number has been blocked from the provider";
         $json['Location'] = $Location;
