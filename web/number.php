@@ -901,7 +901,7 @@ if ($exdata[0] == "Wi") {
             $k = "دقيقة";
         }
         #__________Time
-        if ($status != "200" or $status_zero == null) {
+        if ($status != 200 or $status_zero == null) {
             if ($i == 25) {
                 bot('EditMessageText', [
                     'chat_id' => $chat_id,
@@ -1210,7 +1210,7 @@ if ($exdata[0] == "Ii") {
     #__________Time
     if ($status_zero == null) {
         unlink("data/id/$id/step.txt");
-    } elseif ($status != "200") {
+    } elseif ($status != 200) {
         $zero = "$country$app$operator$add";
         bot('EditMessageText', [
             'chat_id' => $chat_id,
@@ -1480,14 +1480,14 @@ if ($exdata[0] == "Xi") {
     }
     if ($status_zero == null) {
         unlink("data/id/$id/step.txt");
-    } elseif ($status != "200") {
+    } elseif ($status != 200) {
         for ($i = 1; $i < 21; $i++) {
             $api = json_decode(file_get_contents("https://" . $_SERVER['SERVER_NAME'] . "/$bot/api-sites.php?action=getNum&site=$site&country=$country&app=$app&operator=$operator"), 1);
             $status = $api['status'];
             if ($site == "2ndline") {
                 $num2nd = $api['num2nd'];
             }
-            if ($site == "nagm" and $status == "200") {
+            if ($site == "nagm" and $status == 200) {
                 $site = $api['site'];
             }
             $number = $api['number'];
@@ -1512,7 +1512,7 @@ if ($exdata[0] == "Xi") {
                 $k = "دقيقة";
             }
             #__________Time
-            if ($status != "200") {
+            if ($status != 200) {
                 if ($i == 20) {
                     $zero = "$country$app$operator$add";
                     bot('EditMessageText', [
