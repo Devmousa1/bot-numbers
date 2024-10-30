@@ -1216,12 +1216,12 @@ if ($_GET["action"] == "getPrice") {
         if ($operator != "any") {
             $api = json_decode(file_get_contents("https://5sim.biz/v1/guest/prices?country=$zx&product=$app"), 1);
             print_r($api);
-            $price = $api[$zx][$operator]['cost'];
-            $add = $api[$zx][$operator]['count'];
-            echo "https://5sim.biz/v1/guest/prices?country=$zx&product=$app";
+            $price = $api[$zx][$app][$operator]['cost'];
+            $add = $api[$zx][$app][$operator]['count'];
+            echo "https://5sim.biz/v1/guest/prices?country=$zx&product=$app\n";
             echo "price=>" . $price;
-            echo "app=>" . $app;
-            echo "operator" . $operator;
+            echo "\napp=>" . $app;
+            echo "\noperator" . $operator;
            
         } else {
             echo "i am else operator" ;
