@@ -44,5 +44,9 @@ RUN apt-get update && apt-get install -y \
         libzip-dev \
     && docker-php-ext-install zip \
     && docker-php-ext-enable zip
-    
-RUN sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf
+
+# Update Apache to listen on the custom port
+RUN bash -c "sed -i 's/Listen 7860/Listen ${PORT}/' /etc/apache2/ports.conf"
+
+# Set ServerName to suppress warning
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
