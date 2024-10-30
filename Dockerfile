@@ -46,7 +46,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-enable zip
 
 # Update Apache to listen on the custom port
-RUN bash -c "sed -i 's/Listen 7860/Listen ${PORT}/' /etc/apache2/ports.conf"
+RUN bash -c "sed -i 's/Listen 80/Listen ${PORT}/' /etc/apache2/ports.conf"
 
 # Set ServerName to suppress warning
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
