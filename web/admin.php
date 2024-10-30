@@ -5845,11 +5845,13 @@ if ($exdata[0] == "addprice") {
   }
   $keybo = str_replace(["Ai", "Bi", "Ci", "Di", "Ei", "Fi", "Gi", "Hi", "Ji", "Ki", "Li", "Mi", "Ni", "Oi", "Pi", "Qi", "Ri", "Si", "Ti", "Ui", "Vi"], ["iA", "iA", "iA", "iB", "iC", "iD", "iE", "iF", "iG", "iE", "iH", "iJ", "iK", "iL", "iM", "iN", "iO", "iP", "iQ", "iE", "iR"], $api);
   $code = "$country$app$operator$add";
+  $server = $_SERVER['SERVER_NAME'];
   $code = md5($code);
   if ($price == null) {
     bot('answercallbackquery', [
       'callback_query_id' => $update->callback_query->id,
       'text' => "
+      https://$server/$bot/api-sites.php?action=getPrice&site=$site&country=$country&app=$app&operator=$operator
 ⛔️ - عذرا هذه الدولة ليست متوفر في الموقع ♻️
 ",
       'show_alert' => true

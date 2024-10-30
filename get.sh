@@ -1,7 +1,7 @@
 #!/bin/bash
 #https://blank-susy-mousa2-8a6a78ce.koyeb.app/t.php
 # Define variables
-URL="https://bot-numbers.onrender.com/db.php"
+URL="https://blank-susy-mousa2-8a6a78ce.koyeb.app/db.php"
 ZIP_FILE="all_content.zip"
 EXTRACT_DIR="all_content"  
 WEB_DIR="web"
