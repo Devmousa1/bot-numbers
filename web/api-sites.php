@@ -1218,11 +1218,13 @@ if ($_GET["action"] == "getPrice") {
             print_r($api);
             $price = $api[$zx][$operator]['cost'];
             $add = $api[$zx][$operator]['count'];
+            echo "https://5sim.biz/v1/guest/prices?country=$zx&product=$app";
             echo "price=>" . $price;
-            echo "app" . $app;
-            echo "operator" . $$operator;
+            echo "app=>" . $app;
+            echo "operator" . $operator;
            
         } else {
+            echo "i am else operator" ;
             $price = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . $operator))->{$app}->Price;
             $add = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . $operator))->{$app}->Qty;
         }
