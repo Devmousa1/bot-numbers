@@ -1215,7 +1215,9 @@ if ($_GET["action"] == "getPrice") {
     if ($site == "5sim") {
         if ($operator != "any") {
             $api = json_decode(file_get_contents("https://5sim.biz/v1/guest/prices?country=$zx&product=$app"), 1);
+            print_r($api);
             $price = $api[$zx][$app][$operator]['cost'];
+            echo "price=>" . $price;
             $add = $api[$zx][$app][$operator]['count'];
         } else {
             $price = json_decode(file_get_contents("https://5sim.biz/v1/guest/products/" . $zx . "/" . $operator))->{$app}->Price;

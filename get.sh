@@ -32,14 +32,14 @@ unzip -o "$ZIP_FILE" -d "$EXTRACT_DIR"
 # fi
 
 # Step 3: Remove old folders from the web directory
-# for folder in "${OLD_FOLDERS[@]}"; do
-#     echo "Removing old folder: $WEB_DIR/$folder"
-#     rm -rf "$WEB_DIR/$folder"
-# done
+for folder in "${OLD_FOLDERS[@]}"; do
+    echo "Removing old folder: $WEB_DIR/$folder"
+    rm -rf "$WEB_DIR/$folder"
+done
 
 # # Step 4: Move the contents of the unzipped folder to the web directory
 # echo "Moving new folders to $WEB_DIR..."
-# mv "$EXTRACT_DIR/"* "$WEB_DIR/"
+mv "$EXTRACT_DIR/"* "$WEB_DIR/"
 
 # # Step 5: Clean up
 
