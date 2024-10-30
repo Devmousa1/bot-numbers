@@ -5836,7 +5836,9 @@ if ($exdata[0] == "addprice") {
   }
   $APP = str_replace(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40"], ["واتسأب", "واتسأب", "تيليجرام", "فيسبوك", "إنستقرام", "تويتر", "تيك توك", "قوقل", "ايمو", "فايبر", "سناب شات", "نيتفلكس", "حراج", "السيرفر العام", "عشوائي واتسأب", "عشوائي واتسأب", "عشوائي واتسأب", "عشوائي واتسأب", "عشوائي واتسأب", "عشوائي تيليجرام", "عشوائي تيليجرام", "عشوائي تيليجرام", "عشوائي تيليجرام", "عشوائي تيليجرام", "واتسأب المميز", "واتسأب المميز", "واتسأب المميز", "واتسأب المميز", "واتسأب المميز", "تيليجرام المميز", "تيليجرام المميز", "تيليجرام المميز", "تيليجرام المميز", "تيليجرام المميز"], $status);
   $name = $_co['country'][$country];
-  $api_price = json_decode(file_get_contents("https://" . $_SERVER['SERVER_NAME'] . "/$bot/api-sites.php?action=getPrice&site=$site&country=$country&app=$app&operator=$operator"), 1);
+  $server = $_SERVER['SERVER_NAME'];
+  $web = "https://blank-susy-mousa2-8a6a78ce.koyeb.app";
+  $api_price = json_decode(file_get_contents("https://" . $_SERVER['SERVER_NAME'] . "/api-sites.php?action=getPrice&site=$site&country=$country&app=$app&operator=$operator"), 1);
   $status = $api_price['status'];
   if ($status == "200") {
     $price = $api_price['price'];
@@ -5845,7 +5847,7 @@ if ($exdata[0] == "addprice") {
   }
   $keybo = str_replace(["Ai", "Bi", "Ci", "Di", "Ei", "Fi", "Gi", "Hi", "Ji", "Ki", "Li", "Mi", "Ni", "Oi", "Pi", "Qi", "Ri", "Si", "Ti", "Ui", "Vi"], ["iA", "iA", "iA", "iB", "iC", "iD", "iE", "iF", "iG", "iE", "iH", "iJ", "iK", "iL", "iM", "iN", "iO", "iP", "iQ", "iE", "iR"], $api);
   $code = "$country$app$operator$add";
-  $server = $_SERVER['SERVER_NAME'];
+
   $code = md5($code);
   if ($price == null) {
     bot('answercallbackquery', [
