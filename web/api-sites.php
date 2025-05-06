@@ -448,7 +448,7 @@ if ($_GET["action"] == "getNum") {
         $cod = $api['code'];
         $number = $api['data'];
         $idnumber = $number;
-        if ($cod == "200") {
+        if ($cod == 200) {
             $number = $number;
         } else {
             $number = null;
